@@ -1,5 +1,4 @@
 // Import the functions you need from the SDKs you need
-import 'dotenv/config';
 import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore';
 // TODO: Add SDKs for Firebase products that you want to use
@@ -12,7 +11,7 @@ const firebaseConfig = {
   projectId: process.env.FIREBASE_PROJECTID,
   storageBucket: process.env.FIREBASE_STORAGEBUCKET,
   messagingSenderId: process.env.FIREBASE_MESSAGINGSENDERID,
-  appId: process.env.FIREBASE_APP_ID
+  appId: process.env.FIREBASE_APPID
 };
 
 // Initialize Firebase

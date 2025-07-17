@@ -1,5 +1,11 @@
 import {db} from  "../models/data.js";
-import { collection, getDocs, getDoc, addDoc,deleteDoc, doc } from "firebase/firestore";
+import { collection,
+        getDocs,
+        getDoc,
+        addDoc,
+        deleteDoc,
+        doc
+ } from "firebase/firestore";
 
 const productsCollection = collection(db, "products");
 
@@ -16,26 +22,32 @@ export const getAllProducts = async () => {
     }
 };
 
-export const searchProducts = (categ) => {
-    
-    return products.filter((item) => item.categoria.toLowerCase().includes(categ.toLowerCase()));
+
+export const getProductById = async (id) => {
+    try {
+        const docRef = doc(productsCollection, id);
+        const docObtenido = await getDoc(docRef); 
+        if (docObtenido.exists()){
+            return {id: docObtenido.id, ...docObtenido.data()};
+        }
+        else {
+            return null;
+        }
+    } catch (error) {
+        console.error(error);
+    }
     
 };
 
-export const getProductById = (id) => {
-    return products.find((item) => item.id == id);
-};
+export const createProduct = async (registro) => {
+    try {
+        const docRef = await addDoc(productsCollection, registro);
+        return {id: docRef.id, ...registro };
 
-export const createProduct = (categoria, articulo, precio) => {
-    const newProduct = {
-        id: products.length + 1,
-        categoria,
-        articulo,
-        precio
-    };
-    products.push(newProduct);
-    fs.writeFileSync(filePath, JSON.stringify(products, null, 2));
-    return newProduct;
+    } catch (error) {
+        console.error(error);
+    }
+    
 };
 
 export const deleteProduct = (id) => {
