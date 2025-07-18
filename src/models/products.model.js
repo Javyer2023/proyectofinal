@@ -50,22 +50,22 @@ export const createProduct = async (registro) => {
     
 };
 
-export const deleteProduct = (id) => {
-    const indice = products.findIndex((item) => item.id === id);
-    const productoBorrado = products.splice(indice, 1);
-    fs.writeFileSync(filePath, JSON.stringify(products, null, 2));
-    return productoBorrado;
-}
+export const deleteProduct = async (id) => {
+    try {
+        const docRef = doc(productsCollection, id);
+        const docObtenido = await getDoc(docRef);
+        if (docObtenido.exists()){
+            await deleteDoc(docRef, id);
+            return true;
+        }
+        else {
+            return false;
+        }
+        
+    } catch (error) {
+        console.error(error);
+      }
+};
 
-export const updateProduct = (id, nuevosDatos ) => {
-     const indice = parseInt(products.findIndex((item) => item.id === id));
-     if (indice == undefined){
-        return null;
-     }
-     else {
-        products[indice] = { ...products[indice], ...nuevosDatos };
-        fs.writeFileSync(filePath, JSON.stringify(products, null, 2));
-        return products[indice];
-     }
-}
+
 

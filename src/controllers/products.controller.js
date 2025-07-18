@@ -23,15 +23,15 @@ export const createProduct = async (req, resp) => {
     resp.status(201).json(productoCreado);
 }
 
-export const deleteProduct = (req, resp) => {
-    const id = parseInt(req.params.id);
-    const registroBorrado = model.deleteProduct(id);
-    if (registroBorrado == undefined ){
-        resp.status(404).json({error : "Producto No encontrado"});
+export const deleteProduct = async (req, resp) => {
+    const id = req.params.id;
+    const registroBorrado = await model.deleteProduct(id);
+    if (registroBorrado){
+       resp.status(200).json({resultado: "Documento Borrado"});
     }
     else {
-        resp.json(registroBorrado);
-    }
+         resp.status(404).json({error : "Producto No encontrado"});
+    };
     
 }
 
