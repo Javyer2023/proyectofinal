@@ -2,11 +2,13 @@ import 'dotenv/config';
 import express from "express";
 import cors from "cors";
 import productsRouter from "./src/routes/products.router.js"
+import authRouter from "./src/routes/auth.router.js";
 
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
 
 const PORT = process.env.PORT || 3001;
 
@@ -15,7 +17,9 @@ app.listen(PORT,() => (console.log(`Servidor corriendo en http://localhost:${POR
 
 app.use('/api',productsRouter);
 
+
 app.get('/', (req, resp) => {resp.send('Node Js desde Express');});
+app.use('/api',authRouter);
 
 app.use((req, resp, next) => {
     resp.status(404).json({error: "Recurso No Encontrado"});
