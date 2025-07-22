@@ -15,10 +15,10 @@ export const getProductById = async (req , resp) => {
 
     resp.status(200).json(product);
 };
-
+//Utilicé la constante campos porque tengo documentos con diferentes estructuras.
+//Podría hacer una función que determinara la estructura y enviar solo los parametros necesarios.
 export const createProduct = async (req, resp) => {
     const campos = req.body;
-    console.log(req.body);
     const productoCreado = await model.createProduct(campos);
     resp.status(201).json(productoCreado);
 }
