@@ -37,15 +37,20 @@ npm run dev
 
 ### Obtener todos los productos:
 
-> Metodo: GET  Endpoint: '/products'
+> Metodo: **GET**  Endpoint: **'api/products'**
 
 ### Obtener un producto por id:
 
-> Metodo: GET  Endpoint: '/products/:id'
+> Metodo: **GET** Endpoint: **'api/products/:id'**
 
 ### Crear un producto:
 
-> Metodo:   POST  Endpoint: '/products/:id'
+> Requiere login: 
+>Metodo **POST** Endpoint: **'api/login'**
+
+
+> Metodo:   **POST**  Endpoint: **'api/products/:id'**
+> 
 
 
 
