@@ -33,6 +33,19 @@ npm list
 npm run dev
 ```
 
+## COMO USAR LA API:
+
+### Obtener todos los productos:
+
+> Metodo: GET  Endpoint: '/products'
+
+### Obtener un producto por id:
+
+> Metodo: GET  Endpoint: '/products/:id'
+
+### Crear un producto:
+
+> Metodo:   POST  Endpoint: '/products/:id'
 
 
 
