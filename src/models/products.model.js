@@ -46,6 +46,7 @@ export const createProduct = async (registro) => {
 
     } catch (error) {
         console.error(error);
+        console.log("Error en cabecera!");
     }
     
 };
